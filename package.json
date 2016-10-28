@@ -1,0 +1,40 @@
+{
+  "name": "jive-tile-place-picker",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-win": "node node_modules/babel-cli/bin/babel.js ./src --out-dir ./lib --source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lerayne/jive-tile-place-picker.git"
+  },
+  "keywords": [
+    "jive"
+  ],
+  "author": "Michael Yegorov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lerayne/jive-tile-place-picker/issues"
+  },
+  "homepage": "https://github.com/lerayne/jive-tile-place-picker#readme",
+  "devDependencies": {
+    "babel-cli": "6.16.0",
+    "babel-core": "6.17.0",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-preset-es2015": "6.16.0",
+    "babel-preset-react": "6.16.0",
+    "babel-preset-stage-0": "6.16.0",
+    "minimist": "1.2.0",
+    "webpack": "1.13.2"
+  },
+  "peerDependencies": {
+    "react": "15.3.2"
+  },
+  "dependencies": {
+    "classnames": "2.2.5",
+    "react-addons-update": "15.3.2"
+  }
+}
