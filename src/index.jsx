@@ -60,7 +60,7 @@ export default class JivePlaceSelector extends Component {
             excludePeople: true,
             success: data => this.add(data),
             error: data => {
-                console.log('error: ' + JSON.stringify(data));
+                console.error('error: ' + JSON.stringify(data));
             }
         });
     }
