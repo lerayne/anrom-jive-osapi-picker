@@ -8,3 +8,14 @@
 
 ### npm
 `npm install -S anrom-jive-osapi-picker`
+
+## Usage
+```javascript
+<JivePlaceSelector
+    buttonTitle="Добавить блог"
+    value={this.state.places}
+    onChange={places => {
+        this.updateState({places:{$set:places}})
+    }}
+/>
+```
