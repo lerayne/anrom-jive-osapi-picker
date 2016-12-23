@@ -27,7 +27,7 @@ export default class JivePlaceSelector extends Component {
 
     render() {
 
-        const {places, multiple} = this.state;
+        const {places, multiple, contentType} = this.state;
 
         const mainClasses = classnames({
             [css.main]:true,
@@ -39,7 +39,8 @@ export default class JivePlaceSelector extends Component {
                 {places.map((place, i) =>
                     <div key={i}>
                         <span className="selected">
-                            <span className="name">{place.name}</span>
+                            {contentType == 'place' && <span className="name">{place.name}</span>}
+                            {contentType == 'people' && <span className="name">{place.name.formatted}</span>}
                             <a className="remove" onClick={e => this.remove(e, i)}>&times;</a>
                         </span>
                     </div>

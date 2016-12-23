@@ -1,6 +1,6 @@
 {
   "name": "anrom-jive-osapi-picker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "UI for place/people/content Jive JS API picker, for use in custom view tiles",
   "main": "lib/index.js",
   "engines": {
