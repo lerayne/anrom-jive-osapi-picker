@@ -1,11 +1,14 @@
 {
-  "name": "jive-tile-place-picker",
+  "name": "anrom-jive-osapi-picker",
   "version": "0.1.0",
-  "description": "",
+  "description": "UI for place/people/content Jive JS API picker, for use in custom view tiles",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">=4.3.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-win": "node node_modules/babel-cli/bin/babel.js ./src --out-dir ./lib --source-maps"
+    "build-win": "gulp"
   },
   "repository": {
     "type": "git",
@@ -27,6 +30,9 @@
     "babel-preset-es2015": "6.16.0",
     "babel-preset-react": "6.16.0",
     "babel-preset-stage-0": "6.16.0",
+    "gulp": "3.9.1",
+    "gulp-rimraf": "0.2.1",
+    "gulp-shell": "0.5.2",
     "minimist": "1.2.0",
     "webpack": "1.13.2"
   },
