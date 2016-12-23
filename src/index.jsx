@@ -20,7 +20,8 @@ export default class JivePlaceSelector extends Component {
 
         this.state = {
             places: props.value ? (isArray ? value : (value.id > 0 ? [value] : [])) : [],
-            multiple: isArray
+            multiple: isArray,
+            contentType: props.contentType || 'place'
         }
     }
 
@@ -54,10 +55,12 @@ export default class JivePlaceSelector extends Component {
     callPicker(e) {
         e.preventDefault();
 
+        const {contentType} = this.state
+
         osapi.jive.corev3.search.requestPicker({
-            excludeContent: true,
-            excludePlaces: false,
-            excludePeople: true,
+            excludeContent: contentType == 'people' || contentType == 'place',
+            excludePlaces: contentType == 'people' || contentType == 'content',
+            excludePeople: contentType == 'content' || contentType == 'place',
             success: data => this.add(data),
             error: data => {
                 console.error('error: ' + JSON.stringify(data));
