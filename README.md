@@ -30,6 +30,6 @@ export default function Picker(){
 property        | type          | default     | description
 :---------------|:--------------|:------------|:-----------
 **buttonTitle** | string        | "Add place" | Sets the add button title 
-**contentType** | string        | "place"     | Defines the type of content that the picker will be handling. *Possible options:* "people", "content"
-**value**       | object/array  |-            | Current place/person/content item or the array of specified type. \n If array given the selector will allow **multiple values** 
-**onChange**    | function      |-            | *arguments:* selected item (object). Fires when the selection of an object is performed
+**contentType** | string        | "place"     | *Possible options:* "people", "content" <br> Defines the type of content that the picker will be handling.
+**value**       | object/array  |-            | Current place/person/content item or the array of specified type. <br> If array given the selector will allow **multiple values**
+**onChange**    | function      |-            | *arguments:* selected item (object). <br> Fires when the selection of an object is performed
