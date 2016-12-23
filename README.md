@@ -12,7 +12,6 @@
 ## Usage
 Usage example:
 ```jsx
-
 import React from 'react'
 import JiveSelector from 'anrom-jive-osapi-picker'
 
