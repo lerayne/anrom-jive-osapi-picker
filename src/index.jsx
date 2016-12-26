@@ -29,8 +29,7 @@ export default class JivePlaceSelector extends Component {
 
         const {places, multiple, contentType} = this.state;
 
-        const mainClasses = classnames({
-            [css.main]:true,
+        const mainClasses = classnames(css.main, 'anrom-jive-osapi-picker', {
             multiple
         });
 
