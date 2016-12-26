@@ -41,6 +41,7 @@ export default class JivePlaceSelector extends Component {
                         <span className="selected">
                             {contentType == 'place' && <span className="name">{item.name}</span>}
                             {contentType == 'people' && <span className="name">{item.name.formatted}</span>}
+                            {contentType == 'content' && <span className="name">{item.subject}</span>}
                             <a className="remove" onClick={e => this.remove(e, i)}>&times;</a>
                         </span>
                     </div>

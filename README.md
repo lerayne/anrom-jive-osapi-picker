@@ -13,14 +13,28 @@
 Usage example:
 ```jsx
 import React from 'react'
-import JiveSelector from 'anrom-jive-osapi-picker'
+import JivePicker from 'anrom-jive-osapi-picker'
 
-export default function Picker(){
-    return <JivePlaceSelector
+export default function Picker({author, setAuthor}){
+    return <JivePicker
         buttonTitle="Добавить блог"
         contentType="people"
-        value={this.state.author}
-        onChange={person => this.setState({author: person})}
+        value={author}
+        onChange={person => setAuthor({author: person})}
+    />
+}
+```
+
+Example of use with array as value
+```jsx
+import React from 'react'
+import JivePicker from 'anrom-jive-osapi-picker'
+
+export default function Picker({placesArray, setPlaces}){
+    return <JivePicker
+        value={placesArray}
+        // function receives the whole new array, not a single item
+        onChange={places => setPlaces({placesArray: places})}
     />
 }
 ```
