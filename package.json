@@ -12,17 +12,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lerayne/jive-tile-place-picker.git"
+    "url": "git+https://github.com/lerayne/anrom-jive-osapi-picker.git"
   },
   "keywords": [
     "jive"
   ],
   "author": "Michael Yegorov",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lerayne/jive-tile-place-picker/issues"
+    "url": "https://github.com/lerayne/anrom-jive-osapi-picker/issues"
   },
-  "homepage": "https://github.com/lerayne/jive-tile-place-picker#readme",
+  "homepage": "https://github.com/lerayne/anrom-jive-osapi-picker#readme",
   "devDependencies": {
     "babel-cli": "6.16.0",
     "babel-core": "6.17.0",
@@ -32,9 +32,7 @@
     "babel-preset-stage-0": "6.16.0",
     "gulp": "3.9.1",
     "gulp-rimraf": "0.2.1",
-    "gulp-shell": "0.5.2",
-    "minimist": "1.2.0",
-    "webpack": "1.13.2"
+    "gulp-shell": "0.5.2"
   },
   "peerDependencies": {
     "react": "15.3.2"
