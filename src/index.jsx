@@ -72,7 +72,7 @@ export default class JivePlaceSelector extends Component {
     add(place){
         const {contentType} = this.state
 
-        const filterFields = this.props.filterFields || this.filterFields;
+        const filterFields = this.props.filterFields || ::this.filterFields;
 
         let itemExists = true
         if (contentType == 'place'){
@@ -92,13 +92,29 @@ export default class JivePlaceSelector extends Component {
         }
     }
     
-    filterFields(place){
-        const {placeID, name, resources} = place;
-        
-        return {
-            name,
-            id: placeID,
-            uri: resources.self.ref
+    filterFields(item){
+        const {contentType} = this.state
+        const {resources, name, subject, contentID, placeID, id} = item;
+
+        switch (contentType){
+            case 'place':
+                return {
+                    name,
+                    id: placeID,
+                    uri: resources.self.ref
+                }
+            case 'content':
+                return {
+                    name: subject,
+                    id: contentID,
+                    uri: resources.self.ref
+                }
+            case 'people':
+                return {
+                    name: name,
+                    id,
+                    uri: resources.self.ref
+                }
         }
     }
 
