@@ -6,13 +6,13 @@ const gulp = require('gulp')
 const shell = require('gulp-shell')
 const rimraf = require('gulp-rimraf')
 
-gulp.task('default', ['clean', 'process-styles', 'babel-win'], () => {
+gulp.task('default', ['process-styles', 'babel-win'], () => {
 
 })
 
-gulp.task('clean', () => {
-    gulp.src('./lib/*').pipe(rimraf())
-})
+/*gulp.task('clean', () => {
+    gulp.src('./lib/!*').pipe(rimraf())
+})*/
 
 gulp.task('process-styles', () => {
     gulp.src('./src/*.css')

@@ -74,15 +74,15 @@ export default class JivePlaceSelector extends Component {
 
         const filterFields = this.props.filterFields || this.filterFields;
 
-        const itemExists = true
+        let itemExists = true
         if (contentType == 'place'){
-            const itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.placeID) != -1;
+            itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.placeID) != -1;
         }
         if (contentType == 'content'){
-            const itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.contentID) != -1;
+            itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.contentID) != -1;
         }
         if (contentType == 'people'){
-            const itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.id) != -1;
+            itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.id) != -1;
         }
 
         if (!itemExists){
