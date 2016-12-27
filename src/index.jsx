@@ -70,12 +70,22 @@ export default class JivePlaceSelector extends Component {
     }
 
     add(place){
-        
-        const filterFields = this.props.filterFields || this.filterFields;
-        
-        const placeExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.placeID) != -1;
+        const {contentType} = this.state
 
-        if (!placeExists){
+        const filterFields = this.props.filterFields || this.filterFields;
+
+        const itemExists = true
+        if (contentType == 'place'){
+            const itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.placeID) != -1;
+        }
+        if (contentType == 'content'){
+            const itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.contentID) != -1;
+        }
+        if (contentType == 'people'){
+            const itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.id) != -1;
+        }
+
+        if (!itemExists){
             this.setState(update(this.state, {
                 places: {$push: [filterFields(place)]}
             }), () => this.onChange())
