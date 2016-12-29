@@ -16,7 +16,7 @@ export default class JivePlaceSelector extends Component {
         super(props);
 
         const {value} = props;
-        const isArray = props.value instanceof Array;
+        const isArray = props.value.length != undefined;
 
         this.state = {
             places: props.value ? (isArray ? value : (value.id > 0 ? [value] : [])) : [],
@@ -39,7 +39,7 @@ export default class JivePlaceSelector extends Component {
                     <div key={i}>
                         <span className="selected">
                             {contentType == 'place' && <span className="name">{item.name}</span>}
-                            {contentType == 'people' && <span className="name">{item.name.formatted}</span>}
+                            {contentType == 'people' && <span className="name">{item.name}</span>}
                             {contentType == 'content' && <span className="name">{item.subject}</span>}
                             <a className="remove" onClick={e => this.remove(e, i)}>&times;</a>
                         </span>
@@ -111,7 +111,7 @@ export default class JivePlaceSelector extends Component {
                 }
             case 'people':
                 return {
-                    name: name,
+                    name: name.formatted,
                     id,
                     uri: resources.self.ref
                 }
