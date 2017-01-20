@@ -47,7 +47,7 @@ export default class JivePlaceSelector extends Component {
                 )}
             </div>
 
-            {(multiple || !places.length) && <button onClick={::this.callPicker}>
+            {(multiple || !places.length) && <button onClick={::this.callPicker} disabled={this.props.limit && places.length >= this.props.limit}>
                 {this.props.buttonTitle || 'Add place'}
             </button>}
         </div>
