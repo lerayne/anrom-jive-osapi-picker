@@ -10,7 +10,7 @@ import osapi from 'jive/osapi';
 
 import css from './JiveTilePlacePicker.css'
 
-export default class JivePlaceSelector extends Component {
+export default class JiveSelector extends Component {
 
     constructor(props){
         super(props);
@@ -19,7 +19,7 @@ export default class JivePlaceSelector extends Component {
         const isArray = props.value.length != undefined;
 
         this.state = {
-            places: props.value ? (isArray ? value : (value.id > 0 ? [value] : [])) : [],
+            items: props.value ? (isArray ? value : (value.id > 0 ? [value] : [])) : [],
             multiple: isArray,
             contentType: props.contentType || 'place'
         }
@@ -27,15 +27,15 @@ export default class JivePlaceSelector extends Component {
 
     render() {
 
-        const {places, multiple, contentType} = this.state;
+        const {items, multiple, contentType} = this.state;
 
         const mainClasses = classnames(css.main, 'anrom-jive-osapi-picker', {
             multiple
         });
 
         return <div className={mainClasses}>
-            <div className="selected-places">
-                {places.map((item, i) =>
+            <div className={`selected-items selected-${contentType}s`}>
+                {items.map((item, i) =>
                     <div key={i}>
                         <span className="selected">
                             <span className="name">{item.name}</span>
@@ -45,8 +45,8 @@ export default class JivePlaceSelector extends Component {
                 )}
             </div>
 
-            {(multiple || !places.length) && <button onClick={::this.callPicker} disabled={this.props.limit && places.length >= this.props.limit}>
-                {this.props.buttonTitle || 'Add place'}
+            {(multiple || !items.length) && <button onClick={::this.callPicker} disabled={this.props.limit && items.length >= this.props.limit}>
+                {this.props.buttonTitle || 'Add item'}
             </button>}
         </div>
     }
@@ -67,25 +67,26 @@ export default class JivePlaceSelector extends Component {
         });
     }
 
-    add(place){
-        const {contentType} = this.state
+    add(item){
+        const {contentType, items} = this.state
 
-        const filterFields = this.props.filterFields || ::this.filterFields;
+        if (this.props.onItemSelect){
+            this.props.onItemSelect(item)
+        }
 
-        let itemExists = true
-        if (contentType == 'place'){
-            itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.placeID) != -1;
+        const filterFields = this.props.filterFields || ::this.filterFields
+
+        const idField = {
+            "place": "placeID",
+            "content": "contentID",
+            "people": "id"
         }
-        if (contentType == 'content'){
-            itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.contentID) != -1;
-        }
-        if (contentType == 'people'){
-            itemExists = this.state.places.findIndex(targetPlace => targetPlace.id == place.id) != -1;
-        }
+
+        const itemExists = items.findIndex(targetItem => targetItem.id == item[idField[contentType]]) != -1;
 
         if (!itemExists){
             this.setState(update(this.state, {
-                places: {$push: [filterFields(place)]}
+                items: {$push: [filterFields(item)]}
             }), () => this.onChange())
         }
     }
@@ -120,22 +121,22 @@ export default class JivePlaceSelector extends Component {
     }
 
     remove(e, i) {
-        e.preventDefault();
+        if (e != undefined) e.preventDefault()
 
         this.setState(update(this.state, {
-            places: {$splice: [[i,1]]}
+            items: {$splice: [[i,1]]}
         }), () => this.onChange())
     }
 
     onChange(){
         if (typeof this.props.onChange == 'function'){
 
-            const {places, multiple} = this.state;
+            const {items, multiple} = this.state;
 
             let output;
 
-            if (places.length){
-                output = multiple ? places : places[0]
+            if (items.length){
+                output = multiple ? items : items[0]
             } else {
                 output = multiple ? [] : this.props.default || false
             }
