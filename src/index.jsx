@@ -101,19 +101,22 @@ export default class JivePlaceSelector extends Component {
                 return {
                     name,
                     id: placeID,
-                    uri: resources.self.ref
+                    uri: resources.self.ref,
+                    html: resources.html.ref
                 }
             case 'content':
                 return {
                     name: subject,
                     id: contentID,
-                    uri: resources.self.ref
+                    uri: resources.self.ref,
+                    html: resources.html.ref
                 }
             case 'people':
                 return {
                     name: name.formatted,
                     id,
-                    uri: resources.self.ref
+                    uri: resources.self.ref,
+                    html: resources.html.ref
                 }
         }
     }
