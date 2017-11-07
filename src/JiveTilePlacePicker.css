@@ -2,6 +2,10 @@
 
 }
 
+:local(.main) .selected-items {
+    max-width: 100%;
+}
+
 :local(.main) .selected {
     background-color: #d2ecfd;
     padding: 8px 25px 6px 16px;

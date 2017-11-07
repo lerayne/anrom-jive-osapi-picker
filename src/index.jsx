@@ -4,6 +4,7 @@
 
 import React, {Component} from 'react';
 import update from 'react-addons-update';
+import PropTypes from 'prop-types'
 import classnames from 'classnames';
 
 import osapi from 'jive/osapi';
@@ -12,16 +13,54 @@ import css from './JiveTilePlacePicker.css'
 
 export default class JiveSelector extends Component {
 
+    static propTypes = {
+        value: PropTypes.oneOfType([
+            PropTypes.array,
+            PropTypes.object
+        ]),
+
+        contentType: PropTypes.oneOf(['place', 'people', 'content']),
+
+        limit: PropTypes.oneOfType([
+            PropTypes.bool,
+            PropTypes.number
+        ]),
+
+        buttonTitle: PropTypes.node,
+
+        onItemSelect: PropTypes.oneOfType([
+            PropTypes.bool,
+            PropTypes.func
+        ]),
+
+        filterFields: PropTypes.oneOfType([
+            PropTypes.bool,
+            PropTypes.func
+        ]),
+
+        onChange: PropTypes.func
+    }
+
+    static defaultProps = {
+        value:[],
+        contentType: 'place',
+        limit: false,
+        buttonTitle: 'Add item',
+        onItemSelect: false,
+        filterFields: false,
+        onChange: function(){}
+    }
+
     constructor(props){
         super(props);
 
         const {value} = props;
-        const isArray = props.value.length != undefined;
+        const isArray = props.value.length !== undefined
 
         this.state = {
             items: props.value ? (isArray ? value : (value.id > 0 ? [value] : [])) : [],
             multiple: isArray,
-            contentType: props.contentType || 'place'
+            contentType: props.contentType
         }
     }
 
@@ -46,7 +85,7 @@ export default class JiveSelector extends Component {
             </div>
 
             {(multiple || !items.length) && <button onClick={::this.callPicker} disabled={this.props.limit && items.length >= this.props.limit}>
-                {this.props.buttonTitle || 'Add item'}
+                {this.props.buttonTitle}
             </button>}
         </div>
     }
@@ -121,7 +160,7 @@ export default class JiveSelector extends Component {
     }
 
     remove(e, i) {
-        if (e != undefined) e.preventDefault()
+        if (e !== undefined) e.preventDefault()
 
         this.setState(update(this.state, {
             items: {$splice: [[i,1]]}
@@ -129,19 +168,16 @@ export default class JiveSelector extends Component {
     }
 
     onChange(){
-        if (typeof this.props.onChange == 'function'){
+        const {items, multiple} = this.state;
 
-            const {items, multiple} = this.state;
+        let output;
 
-            let output;
-
-            if (items.length){
-                output = multiple ? items : items[0]
-            } else {
-                output = multiple ? [] : this.props.default || false
-            }
-
-            this.props.onChange(output)
+        if (items.length){
+            output = multiple ? items : items[0]
+        } else {
+            output = multiple ? [] : this.props.default || false
         }
+
+        this.props.onChange(output)
     }
 }
