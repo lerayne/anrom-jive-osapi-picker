@@ -64,6 +64,17 @@ export default class JiveSelector extends Component {
         }
     }
 
+    componentWillReceiveProps(newProps){
+        if (this.props.value !== newProps.value){
+
+            const isArray = newProps.value.length !== undefined
+
+            this.setState({
+                items: isArray ? newProps.value : (newProps.value.id > 0 ? [newProps.value] : [])
+            })
+        }
+    }
+
     render() {
 
         const {items, multiple, contentType} = this.state;
